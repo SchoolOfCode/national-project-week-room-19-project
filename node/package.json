@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "populateThoughtsTable": "node ./server/db/scripts/populateThoughtsTable.js"
   },
   "keywords": [],
   "author": "",
