@@ -1,4 +1,9 @@
 import pg from "pg";
+// import { db } from "../config.js";
+
+console.log(process.env.DB_USER);
+console.log(process.env.TESTING);
+console.log("test env");
 
 const pool = new pg.Pool({
   user: "aqryanrxhegvcj",
