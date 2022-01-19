@@ -1,5 +1,5 @@
-// importing express from npm package manager
 import express from "express";
+import query from "./db/index.js";
 // storing express function in a variable
 const app = express();
 // storing the specified port in a variable
@@ -18,15 +18,25 @@ app.get("/message", function (req, res) {
   res.json(data);
 });
 
-app.get("/lunch", function (req, res) {
-  const data = {
-    main: "Huel",
-    dessert: "Vive bar",
-    snack: "Apple",
-  };
-  res.json(data);
-});
+// // Get all thougths
+// app.get("/thoughts", async function (req, res) {
+//   // const thought = req.query.thought;
+//   const thoughts = await getAllThoughts();
 
+//   res.json({ success: true, message: `all thoughts`, payload: thoughts });
+// });
+
+// Get all thougths2
+app.get("/thoughts", async function (req, res) {
+  try {
+    const allThoughts = await query("SELECT * FROM thoughts;");
+    res.json(allThoughts.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+
+  // res.json({ success: true, message: `all thoughts`, payload: thoughts });
+});
 
 // listen to the expression function variable, assigning the port variable and a function as parameters
 app.listen(PORT, function () {

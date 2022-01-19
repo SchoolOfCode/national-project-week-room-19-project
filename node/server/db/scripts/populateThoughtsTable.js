@@ -1,7 +1,7 @@
 import query from "../index.js";
 
-async function populateThoughtsTable() {
-  const thought = "I'm tired"; // this will be e.target.value
+export async function populateThoughtsTable() {
+  const thought = "I'm good"; // this will be e.target.value
   // - Getting value from React(frontend) using fetch() to send data to Node(backend)
   const date = new Date();
 
