@@ -5,6 +5,10 @@ const app = express();
 // storing the specified port in a variable
 const PORT = process.env.PORT || 3000;
 
+// middleware
+app.use(express.json());
+app.use(express.urlencoded());
+
 // using the get method pre-recorded function inside express, specifying the path and req/res
 app.get("/", function (req, res) {
   // send back a response of Hello World
@@ -28,15 +32,24 @@ app.get("/message", function (req, res) {
 
 // Get all thougths2
 app.get("/thoughts", async function (req, res) {
-  try {
-    const allThoughts = await query("SELECT * FROM thoughts;");
-    res.json(allThoughts.rows);
-  } catch (error) {
-    console.error(error.message);
-  }
+  console.log("got request for all thoughts")
+  const allThoughts = await query("SELECT * FROM thoughts;");
+  res.json(allThoughts.rows);
 
   // res.json({ success: true, message: `all thoughts`, payload: thoughts });
 });
+
+app.post("/thoughts", async function (req, res) {
+  console.log(`Got post message ${JSON.stringify(req.body)}`)
+  const date = new Date();
+
+  const queryresult = await query(
+    `INSERT INTO thoughts (thought, date)
+        VALUES ($1, $2) RETURNING thought`,
+    [req.body.description, date]
+  );
+  console.log("Insert thoughts table", queryresult);
+})
 
 // listen to the expression function variable, assigning the port variable and a function as parameters
 app.listen(PORT, function () {
