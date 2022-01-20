@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./server/index.js",
+    "start": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "populateThoughtsTable": "node ./server/db/scripts/populateThoughtsTable.js",
     "createThoughtsTable": "node ./server/db/scripts/createThoughtsTable.js"

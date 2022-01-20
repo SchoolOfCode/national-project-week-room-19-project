@@ -17,13 +17,6 @@ app.get("/", function (req, res, next) {
   // send back a response of Hello World
   res.send("Hello World");
 });
-app.get("/message", function (req, res) {
-  const data = {
-    message: "Hello Gaia",
-    instruction: "Don't kill Gaia",
-  };
-  res.json(data);
-});
 
 // // Get all thougths
 // app.get("/thoughts", async function (req, res) {
@@ -52,7 +45,7 @@ app.post("/thoughts", async function (req, res) {
     [req.body.description, date]
   );
   console.log("Insert thoughts table", queryresult);
-  res.json({message: "Well done"})
+  res.json({ message: "Well done", queryresult });
 });
 
 // listen to the expression function variable, assigning the port variable and a function as parameters
