@@ -1,5 +1,7 @@
 import express from "express";
 import query from "./db/index.js";
+import cors from "cors";
+
 // storing express function in a variable
 const app = express();
 // storing the specified port in a variable
@@ -8,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // middleware
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cors());
 
 // using the get method pre-recorded function inside express, specifying the path and req/res
 app.get("/", function (req, res) {
@@ -32,7 +35,7 @@ app.get("/message", function (req, res) {
 
 // Get all thougths2
 app.get("/thoughts", async function (req, res) {
-  console.log("got request for all thoughts")
+  console.log("got request for all thoughts");
   const allThoughts = await query("SELECT * FROM thoughts;");
   res.json(allThoughts.rows);
 
@@ -40,7 +43,7 @@ app.get("/thoughts", async function (req, res) {
 });
 
 app.post("/thoughts", async function (req, res) {
-  console.log(`Got post message ${JSON.stringify(req.body)}`)
+  console.log(`Got post message ${JSON.stringify(req.body)}`);
   const date = new Date();
 
   const queryresult = await query(
@@ -49,7 +52,7 @@ app.post("/thoughts", async function (req, res) {
     [req.body.description, date]
   );
   console.log("Insert thoughts table", queryresult);
-})
+});
 
 // listen to the expression function variable, assigning the port variable and a function as parameters
 app.listen(PORT, function () {
