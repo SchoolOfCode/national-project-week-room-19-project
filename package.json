@@ -7,7 +7,6 @@
   "scripts": {
     "start": "node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
     "populateThoughtsTable": "node ./server/db/scripts/populateThoughtsTable.js",
     "createThoughtsTable": "node ./server/db/scripts/createThoughtsTable.js"
   },
