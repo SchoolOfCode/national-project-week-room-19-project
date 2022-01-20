@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon ./server/index.js",
-    "env": "node -r dotenv/config ./server/db/index.js",
+    "start": "node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "populateThoughtsTable": "node ./server/db/scripts/populateThoughtsTable.js",
