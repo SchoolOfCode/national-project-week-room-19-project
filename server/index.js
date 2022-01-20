@@ -5,7 +5,7 @@ import cors from "cors";
 // storing express function in a variable
 const app = express();
 // storing the specified port in a variable
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // middleware
 app.use(express.json());
@@ -13,7 +13,7 @@ app.use(express.urlencoded());
 app.use(cors());
 
 // using the get method pre-recorded function inside express, specifying the path and req/res
-app.get("/", function (req, res) {
+app.get("/", function (req, res, next) {
   // send back a response of Hello World
   res.send("Hello World");
 });
@@ -52,6 +52,7 @@ app.post("/thoughts", async function (req, res) {
     [req.body.description, date]
   );
   console.log("Insert thoughts table", queryresult);
+  res.json({message: "Well done"})
 });
 
 // listen to the expression function variable, assigning the port variable and a function as parameters
