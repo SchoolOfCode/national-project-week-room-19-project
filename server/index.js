@@ -29,7 +29,7 @@ app.get("/", function (req, res, next) {
 // Get all thougths2
 app.get("/thoughts", async function (req, res) {
   console.log("got request for all thoughts");
-  const allThoughts = await query("SELECT * FROM thoughts;");
+  const allThoughts = await query("SELECT * FROM thoughts ORDER BY id DESC;");
   res.json(allThoughts.rows);
 
   // res.json({ success: true, message: `all thoughts`, payload: thoughts });
